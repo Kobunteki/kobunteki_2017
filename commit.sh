@@ -12,7 +12,7 @@ git add .
 
 //提交
 
-git commit -m “$1”
+git commit -m “”
 
 //提交到远程
 git push -u origin master
