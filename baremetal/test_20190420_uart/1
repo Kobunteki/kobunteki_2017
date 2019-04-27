@@ -14,28 +14,26 @@ DEP_FILES := $(patsubst %, .%.d, $(OBJS))
 DEP_FILES := $(wildcard $(DEP_FILES))
 TARGET = test_$(shell date +"%Y%m%d%H%M%S")
 
-.PHONY:all clean
-
 
 ifneq ($(DEP_FILES),)
 include $(DEP_FILES)
 endif
 
-all: $(TARGET)
-
-$(TARGET): $(OBJS)
+test : $(OBJS)
 	$(LD) -Ttext 0  -o $@.elf $^
 	$(OBJCOPY) -O binary -S $@.elf $@.bin
 	$(OBJDUMP) -D $@.elf > $@.dis
 
 %.o:%.s
-	$(CC) -c -o $@ $<
+	$(CC) $(SFLAGS) -c -o $@ $<
+	@echo 'aha!'
 
 %.o:%.c
 	$(CC) $(CFLAGS) -c -o $@ $< -MD -MF .$@.d
 
 clean:
-	rm -f *.d *.elf *.bin *.o
+	rm -f *.d *.elf *.bin *.o *.dist
 
 
+.PHONY:all clean
 
