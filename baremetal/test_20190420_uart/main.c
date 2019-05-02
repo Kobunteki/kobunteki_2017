@@ -11,6 +11,7 @@ int main(void)
 	
 	while(1)
 	{
+		puts("Hello, world!\n\r");
 		c = getchar();
 		if (c == '\r')
 		{

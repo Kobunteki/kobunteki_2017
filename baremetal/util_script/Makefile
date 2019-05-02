@@ -19,7 +19,7 @@ TARGET = test_$(shell date +"%Y%m%d%H%M%S")
 
 all: $(TARGET)
 
-$(TARGET):$(OBJS_C) $(OBJS_S0) $(OBJS_S1)
+$(TARGET):$(OBJS_S0) $(OBJS_S1) $(OBJS_C) 
 	@echo $(TARGET)
 	$(LD) -Ttext 0 -o $@.elf $^
 	$(OBJCOPY) -O binary -S $@.elf $@.bin
